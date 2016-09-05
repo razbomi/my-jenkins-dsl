@@ -1,0 +1,16 @@
+{
+  "verbose": true,
+  "ignore": [".git", "node_modules/**/node_modules"],
+  "execMap": {
+    "rb": "ruby",
+    "pde": "processing --sketch={{pwd}} --run",
+    "sh": "bash"
+  },
+  "events": {
+    "restart": "osascript -e 'display notification \"App restarted due to:\n'$FILENAME'\" with title \"nodemon\"'"
+  },
+  "watch": [
+    "src/",
+    "vars/"
+  ]  
+}
