@@ -1,5 +1,5 @@
 def call(user, localIdentifier) {
-  def downloadUrl = "https://www.browserstack.com/browserstack-local/BrowserStackLocal-linux-x64.zip"
+  def downloadUrl = 'https://www.browserstack.com/browserstack-local/BrowserStackLocal-linux-x64.zip'
   def workspaceDir = pwd()
 
   echo "Starting browser stack for ${user} in ${workspaceDir}"
