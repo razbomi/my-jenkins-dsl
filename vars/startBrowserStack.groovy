@@ -10,7 +10,7 @@ def call(user, localIdentifier) {
                    ]]) {
     sh """
         curl -sS ${downloadUrl} > '${workspaceDir}/BrowserStackLocal.zip'
-        unzip -o '${workspaceDir}/BrowserStackLocal.zip' -d '${workspaceDir}''
+        unzip -o '${workspaceDir}/BrowserStackLocal.zip' -d '${workspaceDir}'
         chmod +x '${workspaceDir}/BrowserStackLocal'
         nohup '${workspaceDir}/BrowserStackLocal' -v \
             -onlyAutomate \
