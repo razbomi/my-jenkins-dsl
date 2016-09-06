@@ -29,7 +29,9 @@ def call(
   ]
 
   withCredentials([credentials]) { 
-    withEnv(variables) { installScript() }
+    withEnv(variables) { 
+      installScript() 
+    }
   }
 }
 
