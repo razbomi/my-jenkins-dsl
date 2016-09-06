@@ -11,7 +11,7 @@
 # $ git branch --set-upstream-to=origin/master master
 # $ export PATH=/Development/Tools/nvm-1.1.1/v6.3.1:$PATH
 # $ npm install --save-dev nodemon
-# $ nodemon --debug nodemon.sh
+# $  nodemon -V nodemon.sh -e groovy
 git add --all
 git commit -am "Nodemon checking"
 git push
