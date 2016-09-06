@@ -2,15 +2,11 @@
   "verbose": true,
   "ignore": [".git", "node_modules/**/node_modules"],
   "execMap": {
-    "rb": "ruby",
-    "pde": "processing --sketch={{pwd}} --run",
     "sh": "bash"
-  },
-  "events": {
-    "restart": "echo \"App restarted due to:\n'$FILENAME'\" with title \"nodemon\"'"
   },
   "watch": [
     "src/",
     "vars/"
-  ]  
+  ],
+  "ext": "groovy"
 }

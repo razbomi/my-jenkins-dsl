@@ -2,17 +2,14 @@
   "name": "jenkins",
   "version": "1.0.0",
   "description": "Autocheckins",
-  // "main": "index.js",
+  "main": "nodemon.sh",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "echo \"Wow\""
   },
   "repository": {
     "type": "git",
     "url": "ssh://mitko@localhost:8022/workflowLibs.git"
   },
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "nodemon": "^1.10.2"
   }
