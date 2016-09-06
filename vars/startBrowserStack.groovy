@@ -11,7 +11,7 @@ def call(user, localIdentifier) {
                     passwordVariable: 'BS_TOKEN'
                    ]]) {
     sh '''
-#        curl -sS ${BS_DOWNLOAD_URL} > ${BS_WORK_SPACE}/BrowserStackLocal.zip
+        curl -sS ${BS_DOWNLOAD_URL} > ${BS_WORK_SPACE}/BrowserStackLocal.zip
         unzip -o ${BS_WORK_SPACE}/BrowserStackLocal.zip -d ${BS_WORK_SPACE}
         chmod +x ${BS_WORK_SPACE}/BrowserStackLocal
         nohup ${BS_WORK_SPACE}/BrowserStackLocal -v \
