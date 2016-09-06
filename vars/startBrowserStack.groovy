@@ -1,6 +1,6 @@
 def call(user, localIdentifier) {
   env.BS_DOWNLOAD_URL = 'https://www.browserstack.com/browserstack-local/BrowserStackLocal-linux-x64.zip'
-  env.BS_WORK_SPACE = '.'//pwd()
+  env.BS_WORK_SPACE = '.'  //pwd()
   env.BS_LOCAL_IDENTIFIER = localIdentifier
 
 
@@ -19,7 +19,7 @@ def call(user, localIdentifier) {
             -localIdentifier ${BS_LOCAL_IDENTIFIER} \
             -forcelocal \
             -force \
-            ${BS_TOKEN} > ${BS_WORK_SPACE}/browserstack.log 2>&1
+            ${BS_TOKEN} > ${BS_WORK_SPACE}/browserstack.log 2>&1 &
         #echo $!
         # & echo \\\$! > ${BS_WORK_SPACE}/browserstack.pid
         #cat ${BS_WORK_SPACE}/browserstack.pid
