@@ -1,7 +1,7 @@
 def call(user, localIdentifier) {
-  def env.BS_DOWNLOAD_URL = 'https://www.browserstack.com/browserstack-local/BrowserStackLocal-linux-x64.zip'
-  def env.BS_WORK_SPACE = pwd()
-  def env.BS_LOCAL_IDENTIFIER = localIdentifier
+  env.BS_DOWNLOAD_URL = 'https://www.browserstack.com/browserstack-local/BrowserStackLocal-linux-x64.zip'
+  env.BS_WORK_SPACE = pwd()
+  env.BS_LOCAL_IDENTIFIER = localIdentifier
 
 
   echo "Starting browser stack for ${user} in ${env.BS_WORK_SPACE}"
