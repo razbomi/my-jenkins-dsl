@@ -5,12 +5,11 @@ def call(user, localIdentifier) {
 
 
   echo "Starting browser stack for ${user} in ${env.BS_WORK_SPACE}"
-  withCredentials([[$class          : 'UsernamePasswordMultiBinding',
-                    credentialsId   : user,
-                    usernameVariable: 'BS_USERNAME',
-                    passwordVariable: 'BS_TOKEN'
-                   ]]) {
-    installScript()
+  withCredentials([[
+      $class          : 'UsernamePasswordMultiBinding',
+      credentialsId   : user,
+      usernameVariable: 'BS_USERNAME',
+      passwordVariable: 'BS_TOKEN']]) { installScript() }
 }
 
 def installScript() {
@@ -27,6 +26,4 @@ def installScript() {
       echo $! > ${BS_WORK_SPACE}/browserstack.pid
       cat ${BS_WORK_SPACE}/browserstack.pid
   '''
-}
-
 }
