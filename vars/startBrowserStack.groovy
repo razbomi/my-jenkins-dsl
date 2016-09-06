@@ -17,7 +17,7 @@ def call(
 
   def variables = [
     "BS_DOWNLOAD_URL=${downloadUrl}",
-    "BS_WORK_SPACE = ${installFolder}",
+    "BS_WORK_SPACE=${installFolder}",
     "BS_LOCAL_IDENTIFIER=${localIdentifier}",
 
   ]
@@ -29,24 +29,7 @@ def call(
   ]
 
   withCredentials([credentials]) { 
-    withEnv([
-    "BS_DOWNLOAD_URL=${downloadUrl}",
-    "BS_WORK_SPACE = ${installFolder}",
-    "BS_LOCAL_IDENTIFIER=${localIdentifier}",
-
-  ]) {   sh '''
-      curl -sS ${BS_DOWNLOAD_URL} > ${BS_WORK_SPACE}/BrowserStackLocal.zip
-      unzip -o ${BS_WORK_SPACE}/BrowserStackLocal.zip -d ${BS_WORK_SPACE}
-      chmod +x ${BS_WORK_SPACE}/BrowserStackLocal
-      nohup ${BS_WORK_SPACE}/BrowserStackLocal -v \
-          -onlyAutomate \
-          -localIdentifier ${BS_LOCAL_IDENTIFIER} \
-          -forcelocal \
-          -force \
-          ${BS_TOKEN} > ${BS_WORK_SPACE}/browserstack.log 2>&1 &
-      echo $! > ${BS_WORK_SPACE}/browserstack.pid
-      cat ${BS_WORK_SPACE}/browserstack.pid
-  ''' }
+    withEnv(variables) { installScript() }
   }
 }
 
