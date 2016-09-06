@@ -1,9 +1,9 @@
-def call(user, localIdentifier, installationFolder = '.') {
+def call(user, localIdentifier, installFolder = '.') {
   env.BS_DOWNLOAD_URL = 'https://www.browserstack.com/browserstack-local/BrowserStackLocal-linux-x64.zip'
-  env.BS_WORK_SPACE = installationFolder 
+  env.BS_WORK_SPACE = installFolder 
   env.BS_LOCAL_IDENTIFIER = localIdentifier
 
-  echo "Starting browser stack for ${user} in ${env.BS_WORK_SPACE}"
+  echo "Starting browser stack for ${user} in ${installFolder}"
 
   def credentials = [
       $class          : 'UsernamePasswordMultiBinding',
