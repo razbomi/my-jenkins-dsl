@@ -2,9 +2,10 @@ def call(user) {
   def workingDir = pwd()
 
   echo "Starting browser stack for ${user} in ${workingDir}"
+
 }
 
-def startBrowserStackLocal(user) {
+def withBs(user) {
   withCredentials([[$class          : 'UsernamePasswordMultiBinding',
                     credentialsId   : user,
                     usernameVariable: 'USERNAME',
