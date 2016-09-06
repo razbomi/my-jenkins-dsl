@@ -6,14 +6,21 @@
  * linux-ia32
  * win32
  */
-def call(user, localIdentifier, installFolder = '.') {
+def call(
+  user, 
+  localIdentifier, 
+  installFolder = '.',
+  downloadUrl = 'https://www.browserstack.com/browserstack-local/BrowserStackLocal-linux-x64.zip'
+) {
 
   echo "Starting browser stack ${localIdentifier} for ${user} in ${installFolder}"
 
-  env.BS_DOWNLOAD_URL = 'https://www.browserstack.com/browserstack-local/BrowserStackLocal-linux-x64.zip'
-  env.BS_WORK_SPACE = installFolder 
-  env.BS_LOCAL_IDENTIFIER = localIdentifier
-  def 
+  def variables = [
+    "BS_DOWNLOAD_URL=${downloadUrl}",
+    "BS_WORK_SPACE = ${installFolder}",
+    "BS_LOCAL_IDENTIFIER=${localIdentifier}",
+
+  ]
   def credentials = [
       $class          : 'UsernamePasswordMultiBinding',
       credentialsId   : user,
@@ -21,7 +28,9 @@ def call(user, localIdentifier, installFolder = '.') {
       passwordVariable: 'BS_TOKEN'
   ]
 
-  withCredentials([credentials]) { installScript() }
+  withCredentials([credentials]) { 
+    withEnv(variables) { installScript() }
+  }
 }
 
 
