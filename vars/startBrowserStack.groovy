@@ -1,23 +1,24 @@
 def call(user, localIdentifier) {
-  def downloadUrl = 'https://www.browserstack.com/browserstack-local/BrowserStackLocal-linux-x64.zip'
-  def workspaceDir = pwd()
+  def end.BS_DOWNLOAD_URL = 'https://www.browserstack.com/browserstack-local/BrowserStackLocal-linux-x64.zip'
+  def env.BS_WORK_SPACE = pwd()
 
-  echo "Starting browser stack for ${user} in ${workspaceDir}"
+  echo "Starting browser stack for ${user} in ${BS_WORK_SPACE}"
   withCredentials([[$class          : 'UsernamePasswordMultiBinding',
                     credentialsId   : user,
-                    usernameVariable: 'USERNAME',
-                    passwordVariable: 'TOKEN'
+                    usernameVariable: 'BS_USERNAME',
+                    passwordVariable: 'BS_TOKEN'
                    ]]) {
     sh """
-        curl -sS ${downloadUrl} > '${workspaceDir}/BrowserStackLocal.zip'
-        unzip -o '${workspaceDir}/BrowserStackLocal.zip' -d '${workspaceDir}'
-        chmod +x '${workspaceDir}/BrowserStackLocal'
-        nohup '${workspaceDir}/BrowserStackLocal' -v \
+        curl -sS ${end.BS_DOWNLOAD_URL} > ${BS_WORK_SPACE}/BrowserStackLocal.zip
+        unzip -o ${BS_WORK_SPACE}/BrowserStackLocal.zip -d ${BS_WORK_SPACE}
+        chmod +x ${BS_WORK_SPACE}/BrowserStackLocal
+        nohup ${BS_WORK_SPACE}/BrowserStackLocal -v \
             -onlyAutomate \
             -localIdentifier ${localIdentifier} \
             -forcelocal \
             -force \
-            ${env.TOKEN} > '${workspaceDir}/browserstack.log' 2>&1 & echo \\\$! > '${workspaceDir}/browserstack.pid'
+            ${env.BS_TOKEN} > ${BS_WORK_SPACE}/browserstack.log 2>&1 & echo \\\$! > ${BS_WORK_SPACE}/browserstack.pid
+        echo ${BS_WORK_SPACE}/browserstack.pid
     """
   }
 }
