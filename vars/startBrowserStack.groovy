@@ -9,7 +9,7 @@ def call(user, localIdentifier) {
                     passwordVariable: 'TOKEN'
                    ]]) {
     sh """
-        curl -sS ${downloadUrl} > ${workspaceDir}/BrowserStackLocal.zip
+        curl -sS ${downloadUrl} > '${workspaceDir}/BrowserStackLocal.zip'
         unzip -o ${workspaceDir}/BrowserStackLocal.zip -d ${workspaceDir}
         chmod +x ${workspaceDir}/BrowserStackLocal
         nohup ${workspaceDir}/BrowserStackLocal -v \
