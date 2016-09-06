@@ -17,7 +17,7 @@ def call(user, localIdentifier) {
             -localIdentifier ${localIdentifier} \
             -forcelocal \
             -force \
-            ${env.TOKEN} > ${workspaceDir}/browserstack.log 2>&1 & echo \\\$! > ${workspaceDir}/browserstack.pid
+            ${env.TOKEN} > '${workspaceDir}/browserstack.log' 2>&1 & echo \\\$! > '${workspaceDir}/browserstack.pid'
     """
   }
 }
