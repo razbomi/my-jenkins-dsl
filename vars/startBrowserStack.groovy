@@ -19,7 +19,8 @@ def call(user, localIdentifier) {
             -localIdentifier ${BS_LOCAL_IDENTIFIER} \
             -forcelocal \
             -force \
-            ${BS_TOKEN} > ${BS_WORK_SPACE}/browserstack.log 2>&1 & echo \\\$! > ${BS_WORK_SPACE}/browserstack.pid
+            ${BS_TOKEN} > ${BS_WORK_SPACE}/browserstack.log 2>&1
+        echo !$
         cat ${BS_WORK_SPACE}/browserstack.pid
     '''
   }
