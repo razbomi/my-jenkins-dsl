@@ -18,11 +18,16 @@ def withBs(user) {
     def zip = "${folder}/BrowserStackLocal.zip"
     def bin = "${folder}/BrowserStackLocal"
 
-    sh """
+    echo """
         curl -sS ${url} > ${zip}
         unzip -o ${zip} -d ${folder}
         chmod +x ${bin}
-        nohup ${bin} -onlyAutomate -localIdentifier ${localIdentifier} -forcelocal -force -v ${env.TOKEN} > ${folder}/browserstack.log 2>&1 & echo \\\$! > ${folder}/browserstack.pid
+        nohup ${bin} \
+            -onlyAutomate \
+            -localIdentifier ${localIdentifier} \
+            -forcelocal \
+            -force \
+            -v ${env.TOKEN} > ${folder}/browserstack.log 2>&1 & echo \\\$! > ${folder}/browserstack.pid
     """
   }
 }
