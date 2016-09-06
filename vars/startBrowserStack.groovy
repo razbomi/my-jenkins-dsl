@@ -29,7 +29,12 @@ def call(
   ]
 
   withCredentials([credentials]) { 
-    withEnv(variables) { installScript() }
+    withEnv([
+    "BS_DOWNLOAD_URL=${downloadUrl}",
+    "BS_WORK_SPACE = ${installFolder}",
+    "BS_LOCAL_IDENTIFIER=${localIdentifier}",
+
+  ]) { installScript() }
   }
 }
 
