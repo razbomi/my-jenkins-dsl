@@ -1,33 +1,23 @@
 def call(user, localIdentifier) {
-  def workingDir = pwd()
+  def downloadUrl = "https://www.browserstack.com/browserstack-local/BrowserStackLocal-linux-x64.zip"
+  def workspaceDir = pwd()
 
-  echo "Starting browser stack for ${user} in ${workingDir}"
-
-}
-
-def withBs(user) {
+  echo "Starting browser stack for ${user} in ${workspaceDir}"
   withCredentials([[$class          : 'UsernamePasswordMultiBinding',
                     credentialsId   : user,
                     usernameVariable: 'USERNAME',
                     passwordVariable: 'TOKEN'
                    ]]) {
-
-    // TODO: Parametarize this script
-    def url = "https://www.browserstack.com/browserstack-local/BrowserStackLocal-linux-x64.zip"
-    def folder = pwd() + '/browserstack-local'
-    def zip = "${folder}/BrowserStackLocal.zip"
-    def bin = "${folder}/BrowserStackLocal"
-
-    echo """
-        curl -sS ${url} > ${zip}
-        unzip -o ${zip} -d ${folder}
-        chmod +x ${bin}
-        nohup ${bin} \
+    sh """
+        curl -sS ${downloadUrl} > ${workspaceDir}/BrowserStackLocal.zip
+        unzip -o ${workspaceDir}/BrowserStackLocal.zip -d ${workspaceDir}
+        chmod +x ${workspaceDir}/BrowserStackLocal
+        nohup ${workspaceDir}/BrowserStackLocal -v \
             -onlyAutomate \
             -localIdentifier ${localIdentifier} \
             -forcelocal \
             -force \
-            -v ${env.TOKEN} > ${folder}/browserstack.log 2>&1 & echo \\\$! > ${folder}/browserstack.pid
+            ${env.TOKEN} > ${workspaceDir}/browserstack.log 2>&1 & echo \\\$! > ${workspaceDir}/browserstack.pid
     """
   }
 }
