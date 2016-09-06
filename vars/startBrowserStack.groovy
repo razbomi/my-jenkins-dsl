@@ -15,18 +15,24 @@ def call(
 
   echo "Starting browser stack ${localIdentifier} for ${user} in ${installFolder}"
 
-  def variables = ["BS_DOWNLOAD_URL=${downloadUrl}", "BS_WORK_SPACE=${installFolder}", "BS_LOCAL_IDENTIFIER=${localIdentifier}"]
-  def credentials = 
+  def variables = [
+    "BS_DOWNLOAD_URL=${downloadUrl}",
+    "BS_WORK_SPACE=${installFolder}",
+    "BS_LOCAL_IDENTIFIER=${localIdentifier}"
+  ]
 
-  withCredentials([credentials]) { withEnv(variables) { installScript() } }
+  def credentials = [
+      $class          : 'UsernamePasswordMultiBinding',
+      credentialsId   : user,
+      usernameVariable: 'BS_USERNAME',
+      passwordVariable: 'BS_TOKEN'
+  ]
+
+  withCredentials([credentials]) { 
+    withEnv(variables) { installScript() }
+  }
 }
 
-def buildCredentials() {
-  return [$class         : 'UsernamePasswordMultiBinding', 
-    credentialsId : user, 
-    usernameVariable: 'BS_USERNAME', 
-    passwordVariable: 'BS_TOKEN' ]
-}
 
 def installScript() {
   sh '''
