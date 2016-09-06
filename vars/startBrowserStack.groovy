@@ -11,7 +11,6 @@ def call(user, localIdentifier, installationFolder = '.') {
       usernameVariable: 'BS_USERNAME',
       passwordVariable: 'BS_TOKEN'
   ]
-
   withCredentials([credentials]) { installScript() }
 }
 
