@@ -3,7 +3,6 @@ def call(user, localIdentifier) {
   env.BS_WORK_SPACE = '.'  //pwd()
   env.BS_LOCAL_IDENTIFIER = localIdentifier
 
-
   echo "Starting browser stack for ${user} in ${env.BS_WORK_SPACE}"
   withCredentials([[
       $class          : 'UsernamePasswordMultiBinding',
