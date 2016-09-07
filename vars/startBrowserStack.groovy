@@ -35,7 +35,6 @@ def call(
   }
 }
 
-
 def installScript() {
   sh '''
       curl -sS ${BS_DOWNLOAD_URL} > ${BS_WORK_SPACE}/BrowserStackLocal.zip
