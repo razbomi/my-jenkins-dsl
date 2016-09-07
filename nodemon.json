@@ -1,0 +1,12 @@
+{
+  "verbose": true,
+  "ignore": [".git", "node_modules/**/node_modules"],
+  "execMap": {
+    "sh": "bash"
+  },
+  "watch": [
+    "src/",
+    "vars/"
+  ],
+  "ext": "groovy"
+}
