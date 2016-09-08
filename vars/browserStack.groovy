@@ -31,7 +31,7 @@ def call(
   withCredentials([credentials]) { 
     withEnv(variables) { 
       installScript()
-      runScript() 
+      runScript()
     }
   }
 }
