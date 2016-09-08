@@ -4,7 +4,7 @@
 
 $ ssh -p 8022 mitko@localhost who-am-i
 
-$ git add remote jenkins ssh://mitko@localhost:8022/workflowLibs.git
+$ git remote add jenkins ssh://mitko@localhost:8022/workflowLibs.git
 
 $ npm init
 

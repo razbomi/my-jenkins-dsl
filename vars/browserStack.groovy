@@ -30,7 +30,8 @@ def call(
 
   withCredentials([credentials]) { 
     withEnv(variables) { 
-      installScript() 
+      installScript()
+      runScript() 
     }
   }
 }
@@ -49,4 +50,8 @@ def installScript() {
       echo $! > ${BS_WORK_SPACE}/browserstack.pid
       cat ${BS_WORK_SPACE}/browserstack.pid
   '''
+}
+
+def runScript() {
+
 }
